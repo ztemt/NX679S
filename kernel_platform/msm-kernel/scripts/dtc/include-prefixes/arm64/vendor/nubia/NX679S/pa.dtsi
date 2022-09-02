@@ -1,0 +1,26 @@
+&qupv3_se15_i2c {
+    status = "ok";
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+	
+	tfa98xx@35 {
+		compatible = "tfa,tfa98xx";
+		status = "ok";
+		reg = <0x35>;
+		reset-gpio = <&tlmm 1 0x00>;
+		irq-gpio = <&tlmm 3 0x00>;
+		reset-polarity = <1>;
+		is-primary = <0>;
+	};
+
+	tfa98xx@34 {
+		compatible = "tfa,tfa98xx";
+		status = "ok";
+		reg = <0x34>;
+		reset-gpio = <&tlmm 62 0x00>;
+		irq-gpio = <&tlmm 66 0x00>;
+		reset-polarity = <1>;
+		is-primary = <1>;
+	};
+};

@@ -1,0 +1,35 @@
+#
+# Fan driver configuration
+#
+menuconfig NUBIA_FAN
+	bool "Fan"
+	default n
+	help
+	  Say Y here if you have a Fan connected
+	  to your system.
+
+
+config FAN_CORE
+	tristate "Fan core"
+	default n
+
+config FAN_REMOVE_FOR_GKI
+      bool "Fan gki"
+      default n
+
+config FAN_REMOVE_RPM_CORRECT
+       bool "Fan no rpm correct"
+        default n
+        help
+          Say Y here if you have a Fan rpm correct
+          to your system.
+
+config SOC_FAN
+        tristate "Soc Fan"
+        default n
+       help
+          Say Y here if you use soc control fan.
+
+#config FAN_UPDATA
+#	bool "Fan updata"
+#	default n

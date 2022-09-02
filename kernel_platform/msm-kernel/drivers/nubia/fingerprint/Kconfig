@@ -1,0 +1,22 @@
+################################################## FINGER_PRINTER START
+
+######## Add for goodix fingerprint Start ########
+config NUBIA_FP_GOODIX
+	tristate "generic goodix fingerprint driver"
+	default n
+	help
+	add support for goodix fingerprint driver.
+
+config NUBIA_FP_GOODIX_GKI
+	tristate "generic goodix fingerprint driver gki build"
+	default n
+	help
+	add support for goodix fingerprint driver gki build.
+
+if NUBIA_FP_GOODIX
+source "drivers/nubia/fingerprint/goodix/Kconfig"
+endif
+######## Add for goodix fingerprint End   ########
+
+################################################## FINGER_PRINTER END
+

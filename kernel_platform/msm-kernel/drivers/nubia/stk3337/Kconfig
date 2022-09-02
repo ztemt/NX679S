@@ -1,0 +1,23 @@
+################################################ SENROS DRIVER
+
+
+config NUBIA_SENSORS_STK3337
+	tristate "support proximity/light driver"
+	depends on NUBIA_SENSORS
+	default n
+	help
+		nubia device of ambient&&prox
+
+config FEATURE_NUBIA_SENSORS_LOG_ON
+	tristate "NUBIA SENSORS LOG ON"
+	depends on NUBIA_SENSORS
+	default n
+	help
+		If you want to enable the sensor log,
+		
+config SENSOR_STK_GKI
+	tristate "support proximity/light driver gki"
+	depends on NUBIA_SENSORS
+	default n
+	help
+		nubia device of ambient&&prox for gki

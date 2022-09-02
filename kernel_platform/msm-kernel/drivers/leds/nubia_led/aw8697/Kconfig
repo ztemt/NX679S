@@ -1,0 +1,10 @@
+config AW8697_HAPTIC
+    tristate "Haptic driver for awinic aw8697 series"
+    depends on I2C
+    help
+      This option enables support for aw8697 series Haptic Driver.
+#config NUBIG_HAPTIC_GKI
+#    bool "Haptic driver for awinic aw8697 for gki"
+#    default n
+#    help
+#      nubia aw8697 for GKI test.

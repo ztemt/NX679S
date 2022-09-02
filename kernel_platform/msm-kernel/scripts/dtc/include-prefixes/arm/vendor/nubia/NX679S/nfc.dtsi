@@ -1,0 +1,93 @@
+&qupv3_se9_i2c {
+    nq@28{
+        status = "disabled";  /*disable qcom default nfc*/
+    };
+};
+
+/*&sdhc_2{
+    status = "disabled";
+};*/
+
+&qupv3_se9_i2c {
+  #address-cells = <1>;
+  #size-cells = <0>;
+  status = "okay";
+  qcom,clk-freq-out = <400000>;
+
+  sec-nfc@27 {
+    compatible = "sec-nfc";
+    reg = <0x27>;
+
+    sec-nfc,ven-gpio = <&tlmm 34 0>;
+    sec-nfc,firm-gpio = <&tlmm 45 0>;
+    sec-nfc,irq-gpio = <&tlmm 46 0xf>;
+    //sec-nfc,pmic-ldo = "vdd_ldo20";
+    //clkctrl-reg = <0x10e60a0c>;
+    //clock-names = "OSC_NFC";
+    //clocks = <&clock OSC_NFC>;
+    sec-nfc,clk_req-gpio = <&tlmm 35 0>;
+    pinctrl-names = "sec_nfc_active", "sec_nfc_suspend";
+    pinctrl-0 = <&nfc_int_active_ctr &nfc_clk_req_active_ctr>;
+    pinctrl-1 = <&nfc_int_suspend_ctr &nfc_clk_req_suspend_ctr>;
+  };
+};
+&tlmm {
+     nfc_pin_ctr{
+         nfc_int_active_ctr: nfc_int_active_ctr {
+                mux {
+                        pins = "gpio46";
+                        function = "gpio";
+                };
+
+                config {
+                        pins = "gpio46";
+                        drive-strength = <16>;
+                        bias-pull-down;
+                        input-enable;
+                };
+
+        };
+        nfc_int_suspend_ctr: nfc_int_suspend_ctr {
+                mux {
+                        pins = "gpio46";
+                        function = "gpio";
+                };
+
+                config {
+                        pins = "gpio46";
+                        drive-strength = <16>;
+                        bias-pull-down;
+                        input-enable;
+                };
+
+        };
+        nfc_clk_req_active_ctr: nfc_clk_req_active_ctr {
+                mux {
+                        pins = "gpio35";
+                        function = "gpio";
+                };
+
+                config {
+                        pins = "gpio35";
+                        drive-strength = <16>;
+                        bias-pull-down;
+                        input-enable;
+                };
+
+        };
+        nfc_clk_req_suspend_ctr: nfc_clk_req_suspend_ctr {
+                mux {
+                        pins = "gpio35";
+                        function = "gpio";
+                };
+
+                config {
+                        pins = "gpio35";
+                        drive-strength = <16>;
+                        bias-pull-down;
+                        input-enable;
+                };
+
+        };
+    };
+};

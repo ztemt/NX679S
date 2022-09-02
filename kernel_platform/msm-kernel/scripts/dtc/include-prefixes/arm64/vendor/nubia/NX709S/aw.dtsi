@@ -1,0 +1,106 @@
+&qupv3_se14_i2c {
+	    status = "ok";
+		aw9620x_sar@13 {
+			compatible = "awinic,aw9620x_sar_0";
+			vcc0-supply = <&L9C>;
+			reg = <0x13>;
+			sar-num = < 0 >;
+			interrupt-parent = < &tlmm >;
+			interrupts = <51 0>;
+			irq-gpio = <&tlmm 51 0>;
+			pinctrl-names = "aw_int_default_sar0", "aw_int_active_sar0", "aw_int_suspend_sar0";
+			pinctrl-0 = <&aw_int_default_sar0>;
+			pinctrl-1 = <&aw_int_active_sar0>;
+			pinctrl-2 = <&aw_int_suspend_sar0>;
+			channel_use_flag = <0x01>;
+			status = "okay";
+		};
+};
+&qupv3_se13_i2c {
+		status = "ok";
+		aw9620x_sar@12 {
+			compatible = "awinic,aw9620x_sar_1";
+			reg = < 0x12 >;
+			sar-num = < 1 >;
+			interrupt-parent = < &tlmm >;
+			interrupts = <50 0>;
+			irq-gpio = <&tlmm 50 0>;
+			pinctrl-names = "aw_int_default_sar1", "aw_int_active_sar1", "aw_int_suspend_sar1";
+			pinctrl-0 = <&aw_int_default_sar1>;
+			pinctrl-1 = <&aw_int_active_sar1>;
+			pinctrl-2 = <&aw_int_suspend_sar1>;
+			vcc1-supply = <&L9C>;
+			channel_use_flag = <0x01>;
+			status = "okay";
+		};
+};
+&tlmm {
+	
+		aw_int_default_sar0: aw_int_default_sar0 {
+
+			mux {
+				pins = "gpio51";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio51";
+				output-disable;
+			};
+		};
+		aw_int_suspend_sar0: aw_int_suspend_sar0 {
+		   mux {
+			   pins = "gpio51";
+			   function = "gpio";
+		   };
+		 config {
+			  pins = "gpio51";
+			  drive-strength = <6>;
+			  bias-pull-down;
+		   };
+		};
+		aw_int_active_sar0: aw_int_active_sar0 {
+		  mux {
+			  pins = "gpio51";
+			  function = "gpio";
+		   };
+		   config {
+			 pins = "gpio51";
+			 drive-strength = <6>;
+			 bias-pull-up;
+		   };
+		};
+	aw_int_default_sar1: aw_int_default_sar1 {
+
+       mux {
+           pins = "gpio50";
+           function = "gpio";
+       };
+      config {
+           pins = "gpio50";
+           output-disable;
+       };
+    };
+    aw_int_suspend_sar1: aw_int_suspend_sar1 {
+       mux {
+           pins = "gpio50";
+           function = "gpio";
+       };
+     config {
+          pins = "gpio50";
+          drive-strength = <6>;
+          bias-pull-down;
+       };
+    };
+    aw_int_active_sar1: aw_int_active_sar1 {
+      mux {
+          pins = "gpio50";
+          function = "gpio";
+       };
+    config {
+         pins = "gpio50";
+         drive-strength = <6>;
+         bias-pull-up;
+       };
+    };
+
+};

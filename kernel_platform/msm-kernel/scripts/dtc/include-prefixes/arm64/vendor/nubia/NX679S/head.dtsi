@@ -1,0 +1,15 @@
+/*
+ * nubia overwrite dts
+ */
+
+#include "others.dtsi"
+//#include "haptic.dtsi"
+#include "vibrator.dtsi"
+#include "sensors.dtsi"
+#include "soc_fan.dtsi"
+#include "aw22xxx.dtsi"
+#include "nfc.dtsi"
+//#include "usb.dtsi"
+#include "tp.dtsi"
+#include "pa.dtsi"
+/*#include "ese.dtsi"*/

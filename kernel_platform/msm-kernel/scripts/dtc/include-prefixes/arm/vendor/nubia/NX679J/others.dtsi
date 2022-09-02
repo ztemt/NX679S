@@ -1,0 +1,108 @@
+
+/* breath for logo led */
+&pm8350c_pwm_1 {
+        qcom,lut-patterns = <0 2 5 8 10 13 15 17 20 23 25 27 30 32 35 37 40 43 45 47 50 47 45 43 40 37 35 32 30 27 25 23 20 17 15 13 10 8 5 2 0>;
+
+        lpg@1 {
+                qcom,ramp-step-ms = <50>;
+                qcom,ramp-high-index = <40>;
+                qcom,ramp-from-low-to-high;
+                qcom,ramp-pause-hi-count = <2>;
+                qcom,ramp-pause-lo-count = <2>;
+        };
+
+        lpg@2 {
+                qcom,ramp-step-ms = <50>;
+                qcom,ramp-high-index = <40>;
+                qcom,ramp-from-low-to-high;
+                qcom,ramp-pause-hi-count = <2>;
+                qcom,ramp-pause-lo-count = <2>;
+        };
+
+        lpg@3 {
+                qcom,ramp-step-ms = <50>;
+                qcom,ramp-high-index = <40>;
+                qcom,ramp-from-low-to-high;
+                qcom,ramp-pause-hi-count = <2>;
+                qcom,ramp-pause-lo-count = <2>;
+        };
+};
+
+&tlmm {
+	nubia_gpio {
+		nubia_gpio_default: nubia_gpio_default {
+			mux {
+				pins = "gpio119", "gpio120","gpio121","gpio122";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio119", "gpio120","gpio121","gpio122";
+				driver-strength = <2>; /* 2mA */
+				bias-pull-up;
+				input-enable;
+			};
+		};
+
+		nubia_gpio_pulldown: nubia_gpio_pulldown {
+			mux {
+				pins = "gpio119", "gpio120","gpio121","gpio122";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio119", "gpio120","gpio121","gpio122";
+				driver-strength = <2>; /* 2mA */
+				bias-pull-down;
+				input-enable;
+			};
+		};
+	};
+
+	key_game_sw_default: key_game_sw_default {
+		mux {
+		     pins = "gpio84";
+		     function = "gpio";
+		};
+		config {
+		     pins = "gpio84";
+		     drive-strength = <6>;
+		     bias-pull-up;
+		};
+	};
+};
+&soc {
+	nubia_hw_ver_gpio: nubia_hw_gpio_ctrl {
+		compatible = "nubia_hw_gpio_ctrl";
+		qcom,pcb-gpio1 = <&tlmm 119 0x00>;
+		qcom,pcb-gpio2 = <&tlmm 120 0x00>;
+		qcom,pcb-gpio3 = <&tlmm 121 0x00>;
+		qcom,pcb-gpio4 = <&tlmm 122 0x00>;
+		qcom,rf-gpio1 = <&tlmm 123 0x00>;
+		qcom,rf-gpio2 = <&tlmm 124 0x00>;
+		qcom,config-gpio1 = <&tlmm 119 0x00>;
+		qcom,config-gpio2 = <&tlmm 120 0x00>;
+		pinctrl-names = "pull_up_default","pull_down_default";
+		pinctrl-0 = <&nubia_gpio_default>;
+		pinctrl-1 = <&nubia_gpio_pulldown>;
+	};
+
+    gpio_keys_nubia {
+		compatible = "gpio-keys_nubia";
+		label = "gpio-keys_nubia";
+
+        pinctrl-names = "default";
+        pinctrl-0 = <&key_game_sw_default>;
+
+        game_sw {
+            label = "game_sw";
+            gpios = <&tlmm 84 0>;
+            linux,input-type = <5>;
+            linux,code = <0x0f>;
+            debounce-interval = <15>;
+            gpio-key,wakeup;
+        };
+    };
+};
+
+&battery_charger{
+        qcom,board-type-gpio = <&tlmm 122 0x00>;
+};

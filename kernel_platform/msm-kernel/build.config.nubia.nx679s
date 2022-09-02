@@ -1,0 +1,13 @@
+. ${KERNEL_DIR}/build.config.msm.waipio
+
+function merge_nubia_diffconfig() {
+		if [[ "${VARIANT}" =~ ^(gki|consolidate)$ ]]; then
+				if [ "${VARIANT}" = gki ]; then
+						apply_defconfig_fragment ${KERNEL_DIR}/arch/${ARCH}/configs/vendor/NX679S-perf_diff.config vendor/${MSM_ARCH}-NX679S-gki_defconfig
+						return
+				fi
+				apply_defconfig_fragment ${KERNEL_DIR}/arch/${ARCH}/configs/vendor/NX679S_diff.config vendor/${MSM_ARCH}-NX679S-consolidate_defconfig
+		fi
+}
+
+merge_nubia_diffconfig

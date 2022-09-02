@@ -1,0 +1,6 @@
+
+config NUBIA_CGROUP_FREEZER_V2
+	tristate "NUBIA_FREEZER_V2"
+        default m
+	help
+	  Allow to specify the low level IRQ handler at run time.

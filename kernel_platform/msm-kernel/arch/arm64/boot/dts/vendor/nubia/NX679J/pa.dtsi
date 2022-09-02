@@ -1,0 +1,24 @@
+&qupv3_se17_i2c {
+    status = "ok";
+	
+	#address-cells = <1>;
+	#size-cells = <0>;	
+	
+	spkamp@3a {/* max98927 smartpa device*/
+		compatible = "maxim,max98927R";
+		status = "ok";
+		reg = <0x3a>;
+		mono_stereo_mode = <3>;
+		interleave_mode = <1>;
+		maxim,98927-reset-gpio = <&tlmm 1 0x00>;
+	};
+	
+	spkamp@39 {/* max98927 smartpa device*/
+		compatible = "maxim,max98927L";
+		status = "ok";
+		reg = <0x39>;
+		mono_stereo_mode = <3>;
+		interleave_mode = <1>;
+		maxim,98927-reset-gpio = <&tlmm 62 0x00>;
+	};
+};

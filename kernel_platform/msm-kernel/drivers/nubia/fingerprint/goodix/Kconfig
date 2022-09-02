@@ -1,0 +1,6 @@
+config NUBIA_FP_GOODIX_GW9668
+	tristate "generic goodix GW9668 driver"
+	default n
+	help
+	add support for goodix GW9668 driver.
+

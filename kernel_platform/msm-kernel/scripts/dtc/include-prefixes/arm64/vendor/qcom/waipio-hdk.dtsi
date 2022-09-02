@@ -1,0 +1,14 @@
+#include "waipio-qrd.dtsi"
+
+&sdhc_2 {
+	cd-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
+};
+
+&redriver {
+	status = "disabled";
+};
+
+&usb_qmp_dp_phy {
+	pinctrl-names = "default";
+};
+

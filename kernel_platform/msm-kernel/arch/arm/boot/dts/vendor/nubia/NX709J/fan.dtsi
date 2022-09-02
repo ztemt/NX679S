@@ -1,0 +1,17 @@
+
+//&pm8350c_l11{
+//    regulator-max-microvolt = <3312000>;
+//};
+
+&qupv3_se16_i2c {
+     status = "ok";
+        nubia_fan@2a {
+        compatible = "nubia_fan_i2c";
+        reg = <0x2a>;
+        pinctrl-names ="default";
+        pinctrl-0 =<&fan_mcu_rst_default>;
+        fan,reset-gpio =<&pm8350c_gpios 6 GPIO_ACTIVE_LOW>;
+        fan,HY-gpio = <&tlmm 7 GPIO_ACTIVE_LOW>;
+    };
+};
+

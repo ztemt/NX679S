@@ -1,0 +1,30 @@
+&qupv3_se4_spi {
+	#address-cells = <1>;
+	#size-cells = <0x0>;
+	status = "ok";
+     //qcom,spi-touch-active = "goodix,gt9916S;
+    // qcom,la-vm;
+	//qcom,clk-freq-out = <1000000>;
+	goodix-berlin@0{
+			compatible = "goodix,gt9916S";
+			reg = <0x0>;
+			status = "ok";
+			spi-max-frequency = <1000000>;
+			//vdd-supply = <&L3C>;
+			//goodix,avdd-gpio = <&tlmm 90 0x00>;
+			goodix,iovdd-gpio =<&tlmm 89 0x00>;
+			goodix,avdd-name = "avdd";
+			avdd-supply = <&L3C>;
+			//goodix,iovdd-name = "iovdd";
+			//iovdd-supply = <&tlmm 83 0x0>;
+			pinctrl-names = "pmx_ts_active","pmx_ts_suspend";
+			pinctrl-0 = <&ts_active>;
+			pinctrl-1 = <&ts_int_suspend>;
+			goodix,reset-gpio = <&tlmm 20 0x0>;
+			goodix,irq-gpio = <&tlmm 21 0x2800>;
+			goodix,irq-flags = <2>; 
+			goodix,panel-max-x = <8640>;
+			goodix,panel-max-y = <19200>;
+			goodix,panel-max-w = <255>;
+	};
+};

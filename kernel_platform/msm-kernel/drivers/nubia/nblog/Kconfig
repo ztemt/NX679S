@@ -1,0 +1,9 @@
+#
+# ZTE SoC drivers
+#
+
+config NBLOG
+	tristate "NUBIA LOG MODULES"
+	default y
+	help
+	  this function for big data; these logs are send to data service, and then to analyze.

@@ -1,0 +1,68 @@
+#
+# Nubia drivers configuration
+#
+
+#menuconfig NUBIA_DRIVERS
+menu "nubia drivers"
+
+config NUBIA_DRIVERS
+	tristate "NUBIA DRIVERS"
+	default n
+	help
+	  Say Y here if you want to enable NUBIA DRIVERS
+	  If unsure, say N.
+
+comment "Nubia Device Drivers"
+
+if NUBIA_DRIVERS
+
+config NUBIA_FINGERPRINT
+        tristate "NUBIA_FINGERPRINT"
+        default n
+        help
+         Say Y here if you have enable NUBIA_FINGERPRINT
+         IF  unsure ,say N
+
+config NUBIA_SENSORS
+        bool "NUBIA_SENSORS"
+        default n
+        help
+         Say Y here if you have enable NUBIA_SENSORS
+         IF  unsure ,say N
+
+config NUBIA_SENSORS_SENS
+        bool "NUBIA_SENSORS_SENS"
+        default n
+        help
+         Say Y here if you have enable NUBIA_SENSORS_SENS
+         IF  unsure ,say N
+
+config NUBIA_SCHED_CTL
+    tristate "NUBIA_SCHED_CTL"
+    default m 
+    help
+     Say Y here if you have enable NUBIA_SCHED_CTL
+     IF  unsure ,say N
+
+config NUBIA_FORK_MONITOR_CTL
+        tristate "NUBIA_FORK_MONITOR_CTL"
+        default m 
+        help
+         Say Y here if you have enable FORK_MONITOR_CTL 
+         IF  unsure ,say N
+
+endif
+
+if NUBIA_FINGERPRINT
+source "drivers/nubia/fingerprint/Kconfig"
+endif
+if NUBIA_SENSORS_SENS
+source "drivers/nubia/sensors_sensitivity/Kconfig"
+endif
+if NUBIA_SENSORS
+source "drivers/nubia/stk3337/Kconfig"
+endif
+source "drivers/nubia/freezer/Kconfig"
+source "drivers/nubia/nblog/Kconfig"
+endmenu
+

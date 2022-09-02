@@ -1,0 +1,52 @@
+&pm8350c_gpios {
+        fan_pwm {
+                fan_pwm: fan_pwm {
+                        pins = "gpio8";
+                        function = "func1";
+                        input-disable;
+                        output-enable;
+                        output-high;
+                        qcom,drive-strength = <3>;
+                        power-source = <0>;     /* 1.8V */
+                        drive-push-pull;
+                };
+        };
+        fan_speed {
+                fan_speed: fan_speed {
+                        pins = "gpio1";
+                        function = "normal";
+                        input-enable;
+                        output-disable;
+                        qcom,drive-strength = <3>;
+                        power-source = <0>;     /* 1.8V */
+                        bias-pull-up;
+                };
+        };
+};
+&spmi_bus {
+    qcom,pm8350c@2 {
+        pm8350c_fan_pwm_2: pwms@eb00 {
+            compatible = "qcom,pwm-lpg";
+            reg = <0xeb00>;
+            reg-names = "lpg-base";
+            #pwm-cells = <2>;
+            qcom,num-lpg-channels = <1>;
+        };
+
+        pm8350c_fan: qcom,fan@ef00 {
+            compatible = "soc,fan";
+            reg = <0xef00>;
+            fan,avdd-supply = <&pm8350c_l11>;
+            regulator-names = "avdd";
+            pinctrl-names ="active";
+            pinctrl-0 =<&fan_speed &fan_pwm>;
+            fan,pwm-gpio = <&pm8350c_gpios 8 GPIO_ACTIVE_HIGH>;
+            fan,speed-gpio = <&pm8350c_gpios 1 GPIO_ACTIVE_HIGH>;
+            fan,dbg = "2";
+            fan {
+                label = "fan";
+                pwms = <&pm8350c_fan_pwm_2 0 1000000>;
+            };
+	};
+    };	
+};
